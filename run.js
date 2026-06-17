@@ -1,34 +1,50 @@
-// 1. Mobile Menu Toggle
+// 1. Mobile Menu Toggle & Auto-Close on Link Click
 const mobileMenu = document.getElementById('mobile-menu');
 const navLinks = document.querySelector('.nav-links');
+const navItems = document.querySelectorAll('.nav-links a');
 
-mobileMenu.addEventListener('click', () => {
+// Helper to reset menu states
+function toggleMenu() {
     navLinks.classList.toggle('active');
-    // Simple toggle icon flip animation effect
     const icon = mobileMenu.querySelector('i');
     icon.classList.toggle('fa-bars');
     icon.classList.toggle('fa-times');
+}
+
+mobileMenu.addEventListener('click', toggleMenu);
+
+// NEW: Close the mobile menu automatically when a user clicks a link
+navItems.forEach(item => {
+    item.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+            toggleMenu();
+        }
+    });
 });
 
-// 2. Active Link on Scroll Highlight
+// 2. Active Link on Scroll Highlight (Optimized)
 const sections = document.querySelectorAll('section');
-const navItems = document.querySelectorAll('.nav-links a');
 
 window.addEventListener('scroll', () => {
     let current = '';
     
+    // FIXED: Changed deprecated pageYOffset to window.scrollY
+    const scrollPosition = window.scrollY;
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        // Determines which section is currently taking up the viewport
-        if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+        
+        // Highlights the section when it takes up the top third of the viewport
+        if (scrollPosition >= (sectionTop - sectionHeight / 3)) {
             current = section.getAttribute('id');
         }
     });
 
     navItems.forEach(item => {
         item.classList.remove('active');
-        if (item.getAttribute('href').includes(current)) {
+        // FIXED: Checked exact hash value match to prevent multiple highlights
+        if (item.getAttribute('href') === `#${current}`) {
             item.classList.add('active');
         }
     });
@@ -52,7 +68,6 @@ function type() {
         charIndex++;
     }
 
-    // Dynamic pacing adjustment based on whether it is typing or deleting
     let typeSpeed = isDeleting ? 50 : 100;
 
     if (!isDeleting && charIndex === currentRole.length) {
@@ -60,23 +75,24 @@ function type() {
         isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
-        roleIndex = (roleIndex + 1) % roles.length; // Shift to next string index
+        roleIndex = (roleIndex + 1) % roles.length;
         typeSpeed = 500; // Pause before writing next string
     }
 
     setTimeout(type, typeSpeed);
 }
 
-// Fire typing animation once DOM content loads
 document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(type, 500);
+    // Only fire if the element exists on the page
+    if (typingText) setTimeout(type, 500);
 });
 
 // 4. Form Submission Intercept
-document.getElementById('contact-form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    alert('Thank you for reaching out! This message framework is ready to integrate with your mail provider API.');
-    e.target.reset();
-});
-
-
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for reaching out! This message framework is ready to integrate with your mail provider API.');
+        e.target.reset();
+    });
+}
