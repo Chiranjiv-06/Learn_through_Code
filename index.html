@@ -3,105 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Learn Through Code - Home</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">Dev<span>Port.</span></a>
+    <!-- Main Navigation -->
+    <header class="navbar">
+        <div class="logo">LTC Platform</div>
+        <nav>
             <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="alice.html">Alice's Module</a></li>
+                <li><a href="bob.html">Bob's Sandbox</a></li>
             </ul>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </nav>
+        </nav>
+        <button id="themeToggle" class="btn-outline">Toggle Theme</button>
+    </header>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h3>Hello, It's Me</h3>
-            <h1>Your Name</h1>
-            <h3>And I'm a <span class="typing-text"></span></h3>
-            <p>I build clean, scalable, and user-friendly web applications. Welcome to my digital space.</p>
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-            </div>
-            <a href="#projects" class="btn">View My Work</a>
-        </div>
-    </section>
+    <!-- Hero Section -->
+    <main class="container">
+        <section class="hero">
+            <h1>Welcome to Learn Through Code</h1>
+            <p>Your interactive journey to mastering web development starts here. Explore different modules to build your skills step by step.</p>
+            <button id="getStartedBtn" class="btn-primary">Start Learning Now</button>
+        </section>
 
-    <section id="about" class="about">
-        <h2 class="heading">About <span>Me</span></h2>
-        <div class="about-container">
-            <div class="about-text">
-                <h3>Who am I?</h3>
-                <p>I am a passionate developer focused on creating interactive and impactful experiences on the web. I love solving complex problems, learning new frameworks, and refining my craft daily.</p>
-                
-                <h3>My Skills</h3>
-                <div class="skills-tags">
-                    <span>HTML5</span>
-                    <span>CSS3</span>
-                    <span>JavaScript</span>
-                    <span>React</span>
-                    <span>Node.js</span>
-                    <span>Git</span>
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Core Learning Paths</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon">💻</div>
+                    <h3>HTML5 Structure</h3>
+                    <p>Learn how to build the foundation of any web page using semantic HTML tags for better accessibility.</p>
+                    <a href="alice.html" class="link-text">Go to Alice's Module &rarr;</a>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🎨</div>
+                    <h3>CSS3 Styling</h3>
+                    <p>Master responsive design, Flexbox, and CSS Grid to make your applications look professional.</p>
+                    <a href="bob.html" class="link-text">Go to Bob's Sandbox &rarr;</a>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">⚡</div>
+                    <h3>JavaScript Logic</h3>
+                    <p>Add dynamic interactivity, manipulate the DOM, and handle user events with vanilla JavaScript.</p>
+                    <a href="#" class="link-text">Coming Soon &rarr;</a>
                 </div>
             </div>
+        </section>
+
+        <!-- Interactive Demo Area -->
+        <section id="interactive-demo" class="demo-section">
+            <h2>Live Code Execution</h2>
+            <p>Test the JavaScript engine below.</p>
+            <div class="demo-console">
+                <div id="demo-output" class="output-box">
+                    <span class="placeholder">Output will appear here...</span>
+                </div>
+                <div class="demo-controls">
+                    <input type="text" id="demoInput" placeholder="Enter your name..." />
+                    <button id="demoBtn" class="btn-secondary">Run Greeting Script</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section class="newsletter">
+            <h2>Stay Updated</h2>
+            <form id="newsletterForm">
+                <input type="email" id="emailInput" placeholder="Enter your email address" required>
+                <button type="submit" class="btn-primary">Subscribe</button>
+            </form>
+            <p id="formMessage" class="hidden message"></p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Learn Through Code</h3>
+                <p>Empowering developers since 2026.</p>
+            </div>
+            <ul class="footer-links">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
         </div>
-    </section>
-
-    <section id="projects" class="projects">
-        <h2 class="heading">Latest <span>Projects</span></h2>
-        <div class="projects-container">
-            <div class="project-box">
-                <div class="project-info">
-                    <h4>E-Commerce Platform</h4>
-                    <p>A full-stack e-commerce application featuring user authentication, payment gateway, and a responsive dashboard.</p>
-                    <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                </div>
-            </div>
-            <div class="project-box">
-                <div class="project-info">
-                    <h4>AI Chat Interface</h4>
-                    <p>An interactive frontend dashboard communicating with a machine learning API to process user text input in real-time.</p>
-                    <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                </div>
-            </div>
-            <div class="project-box">
-                <div class="project-info">
-                    <h4>Task Manager App</h4>
-                    <p>A sleek productivity application built to organize workflows with drag-and-drop features and persistent local storage.</p>
-                    <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                </div>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Learn Through Code Project. All rights reserved.</p>
         </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <h2 class="heading">Contact <span>Me</span></h2>
-        <form id="contact-form">
-            <div class="input-box">
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email Address" required>
-            </div>
-            <textarea cols="30" rows="10" placeholder="Your Message" required></textarea>
-            <button type="submit" class="btn">Send Message</button>
-        </form>
-    </section>
-
-    <footer class="footer">
-        <p>Copyright &copy; 2026 by Your Name | All Rights Reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script src="run.js"></script>
 </body>
 </html>
