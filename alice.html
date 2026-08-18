@@ -3,10 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alice</title>
+    <title>Alice's Module - Learn Through Code</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Welcome</h1>
-    <p>This is the Alice page.</p>
-</body>  
+    <header class="navbar">
+        <div class="logo">LTC Platform</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="alice.html" class="active">Alice's Module</a></li>
+                <li><a href="bob.html">Bob's Sandbox</a></li>
+            </ul>
+        </nav>
+        <button id="themeToggle" class="btn-outline">Toggle Theme</button>
+    </header>
+
+    <main class="container module-page">
+        <section class="page-header">
+            <h1>Welcome to Alice's Module</h1>
+            <p class="subtitle">Focus: Data Structures & Algorithms</p>
+        </section>
+
+        <div class="layout-sidebar">
+            <aside class="sidebar">
+                <h3>Table of Contents</h3>
+                <ul class="toc-list">
+                    <li><a href="#intro">Introduction to Arrays</a></li>
+                    <li><a href="#linked-lists">Understanding Linked Lists</a></li>
+                    <li><a href="#trees">Binary Search Trees</a></li>
+                    <li><a href="#quiz">Module Quiz</a></li>
+                </ul>
+            </aside>
+
+            <article class="content-area">
+                <section id="intro" class="lesson">
+                    <h2>1. Introduction to Arrays</h2>
+                    <p>Arrays are one of the most fundamental data structures in programming. They store elements sequentially in memory.</p>
+                    <div class="code-snippet">
+                        <pre><code>
+// JavaScript Array Example
+let fruits = ["Apple", "Banana", "Cherry"];
+console.log(fruits[0]); // Outputs: Apple
+fruits.push("Date"); // Adds to the end
+                        </code></pre>
+                    </div>
+                    <div class="tip-box">
+                        <strong>Pro Tip:</strong> Arrays are great for fast lookups by index, but inserting elements in the middle can be slow.
+                    </div>
+                </section>
+
+                <section id="linked-lists" class="lesson">
+                    <h2>2. Understanding Linked Lists</h2>
+                    <p>Unlike arrays, linked lists do not store elements continuously. Each element (node) points to the next one.</p>
+                    <p>This allows for efficient insertions and deletions.</p>
+                </section>
+
+                <section id="quiz" class="quiz-section">
+                    <h2>Module Knowledge Check</h2>
+                    <form id="aliceQuizForm" class="quiz-form">
+                        <div class="question">
+                            <p>What is the time complexity of accessing an array element by index?</p>
+                            <label><input type="radio" name="q1" value="a"> O(n)</label>
+                            <label><input type="radio" name="q1" value="b"> O(1)</label>
+                            <label><input type="radio" name="q1" value="c"> O(log n)</label>
+                        </div>
+                        <button type="submit" class="btn-primary">Submit Answers</button>
+                        <p id="quizResult" class="hidden message"></p>
+                    </form>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Learn Through Code Project.</p>
+        </div>
+    </footer>
+
+    <script src="run.js"></script>
+</body>
 </html>
