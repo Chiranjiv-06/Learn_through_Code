@@ -1,98 +1,52 @@
-// 1. Mobile Menu Toggle & Auto-Close on Link Click
-const mobileMenu = document.getElementById('mobile-menu');
-const navLinks = document.querySelector('.nav-links');
-const navItems = document.querySelectorAll('.nav-links a');
+document.addEventListener("DOMContentLoaded", () => {
+  // Handler for Alice's knowledge check
+  const quizButtons = document.querySelectorAll(".quiz-btn");
+  const feedback = document.getElementById("quiz-feedback");
 
-// Helper to reset menu states
-function toggleMenu() {
-    navLinks.classList.toggle('active');
-    const icon = mobileMenu.querySelector('i');
-    icon.classList.toggle('fa-bars');
-    icon.classList.toggle('fa-times');
-}
+  if (quizButtons.length > 0 && feedback) {
+    quizButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const choice = button.getAttribute("data-answer");
 
-mobileMenu.addEventListener('click', toggleMenu);
-
-// NEW: Close the mobile menu automatically when a user clicks a link
-navItems.forEach(item => {
-    item.addEventListener('click', () => {
-        if (navLinks.classList.contains('active')) {
-            toggleMenu();
+        if (choice === "JavaScript") {
+          feedback.textContent = "✓ Correct! JavaScript manages DOM tree mutations and event handling.";
+          feedback.style.color = "var(--success)";
+        } else {
+          feedback.textContent = `✗ "${choice}" is incorrect. Try another option.`;
+          feedback.style.color = "var(--danger)";
         }
+      });
     });
-});
+  }
 
-// 2. Active Link on Scroll Highlight (Optimized)
-const sections = document.querySelectorAll('section');
+  // Handler for Bob's project inspection cards
+  const caseButtons = document.querySelectorAll(".case-study-btn");
+  const detailPanel = document.getElementById("project-details");
+  const detailTitle = document.getElementById("detail-title");
+  const detailContent = document.getElementById("detail-content");
 
-window.addEventListener('scroll', () => {
-    let current = '';
-    
-    // FIXED: Changed deprecated pageYOffset to window.scrollY
-    const scrollPosition = window.scrollY;
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        // Highlights the section when it takes up the top third of the viewport
-        if (scrollPosition >= (sectionTop - sectionHeight / 3)) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navItems.forEach(item => {
-        item.classList.remove('active');
-        // FIXED: Checked exact hash value match to prevent multiple highlights
-        if (item.getAttribute('href') === `#${current}`) {
-            item.classList.add('active');
-        }
-    });
-});
-
-// 3. Dynamic Self-Typing Effect
-const typingText = document.querySelector('.typing-text');
-const roles = ['Frontend Developer', 'Machine Learning Enthusiast', 'Problem Solver'];
-let roleIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-
-function type() {
-    const currentRole = roles[roleIndex];
-    
-    if (isDeleting) {
-        typingText.textContent = currentRole.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        typingText.textContent = currentRole.substring(0, charIndex + 1);
-        charIndex++;
+  const projectMetrics = {
+    telemetry: {
+      title: "IoT Telemetry Pipeline — Performance Metrics",
+      content: "Ingestion Latency: <40ms | Data Throughput: 1,500 payload frames/sec | Edge Fault Recovery: Continuous loop retry enabled."
+    },
+    backend: {
+      title: "REST API & Event Gateway — Architecture Specifications",
+      content: "p99 Execution Latency: 18ms | Connection Pool: Asynchronous non-blocking worker pool | Data Consistency: ACID compliant."
     }
+  };
 
-    let typeSpeed = isDeleting ? 50 : 100;
-
-    if (!isDeleting && charIndex === currentRole.length) {
-        typeSpeed = 1500; // Pause at full word
-        isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-        typeSpeed = 500; // Pause before writing next string
-    }
-
-    setTimeout(type, typeSpeed);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Only fire if the element exists on the page
-    if (typingText) setTimeout(type, 500);
-});
-
-// 4. Form Submission Intercept
-const contactForm = document.getElementById('contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Thank you for reaching out! This message framework is ready to integrate with your mail provider API.');
-        e.target.reset();
+  if (caseButtons.length > 0 && detailPanel) {
+    caseButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const key = button.getAttribute("data-project");
+        if (projectMetrics[key]) {
+          detailTitle.textContent = projectMetrics[key].title;
+          detailContent.textContent = projectMetrics[key].content;
+          detailPanel.style.display = "block";
+          detailPanel.scrollIntoView({ behavior: "smooth" });
+        }
+      });
     });
-}
+  }
+});

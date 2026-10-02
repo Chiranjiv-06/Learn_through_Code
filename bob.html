@@ -1,9 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bob | Case Studies</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
+  <header class="navbar">
+    <div class="logo"><a href="index.html">← Back to Portfolio</a></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="alice.html">Alice</a>
+      <a href="bob.html" class="active">Bob</a>
+    </nav>
+  </header>
 
-<h1>My First Heading </h1>
-<p>My first paragraph. </p>
+  <main class="container">
+    <section class="module-section">
+      <h2>Project Case Studies</h2>
+      <p>Select any architecture pipeline below to inspect operational metrics.</p>
 
+      <div class="card-grid">
+        <div class="card">
+          <h3>IoT Telemetry Pipeline</h3>
+          <p>Real-time edge sensor processing, GPS event geo-stamping, and shock thresholding.</p>
+          <button class="btn case-study-btn" data-project="telemetry">Inspect Metrics</button>
+        </div>
+
+        <div class="card">
+          <h3>REST API & Event Gateway</h3>
+          <p>Microservice routing handling transactional database persistence and rate-limited endpoints.</p>
+          <button class="btn case-study-btn" data-project="backend">Inspect Metrics</button>
+        </div>
+      </div>
+
+      <div id="project-details" class="card detail-panel">
+        <h3 id="detail-title"></h3>
+        <p id="detail-content"></p>
+      </div>
+    </section>
+  </main>
+
+  <script src="run.js"></script>
 </body>
 </html>
